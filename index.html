@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StepOut Bandung</title>
+  <style>
+    /* ===== Global Variables ===== */
+    :root {
+      --primary: #FF7A00;
+      --secondary: #007ACC;
+      --accent: #2ECC71;
+      --bg: #FFFFFF;
+      --text: #2C3E50;
+      --nav-bg: linear-gradient(to right, #ffffff, #ffe8d1);
+      --nav-text: #2C3E50;
+    }
+
+    /* Dark Mode */
+    body.dark {
+      --primary: #FF7A00;
+      --secondary: #66B2FF;
+      --accent: #2ECC71;
+      --bg: #2C3E50;
+      --text: #EAEAEA;
+      --nav-bg: #2C3E50;
+      --nav-text: #FF7A00;
+    }
+
+    /* ===== Global Styles ===== */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      transition: background 0.3s, color 0.3s;
+    }
+
+    /* Navbar */
+    header {
+      background: var(--nav-bg);
+      padding: 15px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.3s, color 0.3s;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    header img {
+      height: 45px;
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    nav ul li {
+      display: inline;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: var(--nav-text);
+      font-weight: bold;
+      transition: color 0.3s, text-shadow 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: var(--primary);
+      text-shadow: 0 0 8px var(--primary);
+    }
+
+    /* Dark Mode Button */
+    .theme-toggle {
+      background: none;
+      border: 2px solid var(--nav-text);
+      border-radius: 20px;
+      padding: 5px 12px;
+      cursor: pointer;
+      font-size: 0.9em;
+      color: var(--nav-text);
+      transition: all 0.3s;
+    }
+
+    .theme-toggle:hover {
+      background: var(--primary);
+      color: #fff;
+      text-shadow: 0 0 8px var(--accent);
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 60px 20px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: white;
+      transition: background 0.3s;
+    }
+
+    .hero h1 {
+      font-size: 3em;
+      margin: 0;
+    }
+
+    .hero p {
+      font-size: 1.2em;
+      margin-top: 10px;
+    }
+
+    /* Peta Interaktif */
+    section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    section h2 {
+      color: var(--primary);
+      margin-bottom: 20px;
+      text-shadow: 0 0 6px rgba(255,122,0,0.6);
+    }
+
+    .map-container {
+      width: 90%;
+      height: 600px;
+      margin: 0 auto;
+      border: 3px solid var(--secondary);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: border 0.3s;
+      position: relative;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* Layer Control */
+    .layer-control {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 8px;
+      padding: 10px;
+      text-align: left;
+      font-size: 0.9em;
+      color: #333;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    body.dark .layer-control {
+      background: rgba(30,30,30,0.95);
+      color: #EAEAEA;
+      border: 1px solid var(--primary);
+    }
+
+    .layer-control label {
+      display: block;
+      margin-bottom: 6px;
+      cursor: pointer;
+    }
+
+    .layer-control input[type="checkbox"] {
+      margin-right: 6px;
+      accent-color: var(--primary);
+    }
+
+    /* Tentang */
+    .about {
+      background: #fef5ef;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      padding: 60px 20px;
+      flex-wrap: wrap;
+      transition: background 0.3s;
+    }
+
+    body.dark .about {
+      background: #313131;
+    }
+
+    .about img {
+      width: 300px;
+    }
+
+    .about-text {
+      max-width: 500px;
+      text-align: left;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--nav-bg);
+      color: var(--nav-text);
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+      transition: background 0.3s, color 0.3s;
+    }
+
+
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <img src="img/Logo_StepOutBandung.png" alt="StepOut Bandung" style="height: auto; width: 150px; margin-left:80px;">
+
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#beranda">Beranda</a></li>
+        <li><a href="#peta">Peta Interaktif</a></li>
+        <li><a href="#tentang">Tentang</a></li>
+        <li><a href="#kontak">Kontak</a></li>
+        <li><button class="theme-toggle" id="themeToggle">🌙 Dark</button></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="beranda">
+    <h1>StepOut Bandung</h1>
+    <p>“Juru Pituduh Wisata Urang! (Juru pemandu wisata kita!)”</p>
+  </section>
+
+  <!-- Peta Interaktif -->
+  <section id="peta">
+    <h2>PETA STEPOUT BANDUNG</h2>
+    <div class="map-container">
+      
+      <!-- Embed WebGIS -->
+      <iframe src="http://127.0.0.1:5500/qgis2web_2025_09_05-02_58_31_180825/QGIS.html#13/-6.9067/107.6511"></iframe>
+    </div>
+  </section>
+
+  <!-- Tentang -->
+  <section id="tentang" class="about">
+    <div class="about-text">
+      <h2>Tentang StepOut Bandung</h2>
+      <p>
+        Platfom ini merupakan proyek WEBGIS yang dinaungi oleh Multimedia Application, Big Data and Cybersecurity Laboratory, Geographic Information System Division
+      </p>
+      StepOut Bandung hadir sebagai juru pemandu digital untuk mengeksplorasi
+        keindahan, budaya, dan destinasi menarik di Kota Bandung. Bagi kamu yang mau
+        jalan jalan dan tidak tahu mau kemana? Platform ini jawabannya!
+    </p>
+    </div>
+    <img src="img/Logo_MBC.png" alt="MBC logo" style="width:350px; height:auto;">
+    <img src="img/Logo_GIS.png" alt="GIS logo" style="width:125px; height:auto;">
+  </section>
+
+  <!-- Kontak -->
+  <section id="kontak">
+    <h2>Kontak</h2>
+    <p>Email: shofwanbudiman117@gmail.com</p>
+    <p>LinkedIn: @Muhammad Shofwan Budiman</p>
+    <p>Instagram: @soft_0ne</p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 StepOut Bandung. All Rights Reserved.</p>
+  </footer>
+
+  <!-- Script Dark Mode -->
+  <script>
+    const toggleBtn = document.getElementById("themeToggle");
+    toggleBtn.addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+      if (document.body.classList.contains("dark")) {
+        toggleBtn.textContent = "☀️ Light";
+      } else {
+        toggleBtn.textContent = "🌙 Dark";
+      }
+    });
+  </script>
+</body>
+</html>
